@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Connect Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+<div class="auth-screen" id="authScreen">
+
+    <div class="auth-left">
+
+        <div class="brand">
+            <div class="logo">CC</div>
+            <div>
+                <h1>Campus Connect</h1>
+                <p>Smart Campus Portal</p>
+            </div>
+        </div>
+
+        <div class="auth-content">
+
+            <span class="eyebrow">
+                <span class="live-dot"></span>
+                ONE CAMPUS. ONE PLACE.
+            </span>
+
+            <h2>
+                Everything you need for a
+                <span>smarter campus.</span>
+            </h2>
+
+            <p class="auth-description">
+                Notices, events, complaints, academic resources and
+                announcements — all organised in one simple dashboard.
+            </p>
+
+            <div class="feature-grid">
+
+                <div class="feature-box">
+                    <span>📢</span>
+                    <div>
+                        <strong>Live Notices</strong>
+                        <small>Never miss updates</small>
+                    </div>
+                </div>
+
+                <div class="feature-box">
+                    <span>🎟️</span>
+                    <div>
+                        <strong>Campus Events</strong>
+                        <small>Register instantly</small>
+                    </div>
+                </div>
+
+                <div class="feature-box">
+                    <span>🛠️</span>
+                    <div>
+                        <strong>Complaints</strong>
+                        <small>Track every issue</small>
+                    </div>
+                </div>
+
+                <div class="feature-box">
+                    <span>📚</span>
+                    <div>
+                        <strong>Resources</strong>
+                        <small>Study anytime</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="auth-footer">
+            © 2026 Campus Connect
+        </div>
+
+    </div>
+
+    <div class="auth-right">
+
+        <div class="login-card">
+
+            <div class="login-avatar">👋</div>
+
+            <h2>Welcome back</h2>
+
+            <p class="muted">
+                Login to access your campus dashboard.
+            </p>
+
+            <form id="loginForm">
+
+                <label>Email</label>
+
+                <div class="input-group">
+                    <span>✉️</span>
+                    <input
+                        id="loginEmail"
+                        type="email"
+                        placeholder="student@campus.edu"
+                        required
+                    >
+                </div>
+
+                <label>Password</label>
+
+                <div class="input-group">
+                    <span>🔒</span>
+
+                    <input
+                        id="loginPassword"
+                        type="password"
+                        placeholder="Enter password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        id="togglePassword"
+                        class="show-password"
+                    >
+                        Show
+                    </button>
+                </div>
+
+                <button class="primary-btn login-btn" type="submit">
+                    Login
+                    <span>→</span>
+                </button>
+
+                <p id="loginMessage" class="form-message"></p>
+
+            </form>
+
+            <div class="demo-login">
+                <strong>Demo Login</strong>
+                <span>student@campus.edu</span>
+                <span>123456</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= DASHBOARD ================= -->
+<div class="app" id="dashboardApp" hidden>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-header">
+
+            <div class="brand">
+                <div class="logo">CC</div>
+
+                <div>
+                    <strong>Campus Connect</strong>
+                    <small>Smart Campus Portal</small>
+                </div>
+            </div>
+
+            <button id="closeSidebar" class="close-mobile">
+                ×
+            </button>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-title">MAIN MENU</p>
+
+            <button class="nav-item active" data-page="overview">
+                <span>⌂</span>
+                <span>Overview</span>
+            </button>
+
+            <button class="nav-item" data-page="notices">
+                <span>📢</span>
+                <span>Notices</span>
+                <b>4</b>
+            </button>
+
+            <button class="nav-item" data-page="events">
+                <span>📅</span>
+                <span>Events</span>
+            </button>
+
+            <button class="nav-item" data-page="complaints">
+                <span>🛠️</span>
+                <span>Complaints</span>
+            </button>
+
+            <button class="nav-item" data-page="resources">
+                <span>📚</span>
+                <span>Resources</span>
+            </button>
+
+            <p class="nav-title other-title">
+                OTHERS
+            </p>
+
+            <button class="nav-item" data-page="announcements">
+                <span>📣</span>
+                <span>Announcements</span>
+            </button>
+
+            <button class="nav-item" data-page="help">
+                <span>❓</span>
+                <span>Help & Support</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button class="nav-item" id="themeToggle">
+                <span id="themeIcon">◐</span>
+                <span>Dark Mode</span>
+
+                <span class="theme-switch" id="themeSwitch">
+                    <span></span>
+                </span>
+            </button>
+
+            <div class="sidebar-profile">
+
+                <div class="avatar">VD</div>
+
+                <div class="sidebar-profile-info">
+                    <strong>Versha Dewangan</strong>
+                    <small>Student • CSE</small>
+                </div>
+
+                <button id="sidebarProfileBtn">
+                    ⋮
+                </button>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="mobile-menu" id="openSidebar">
+                    ☰
+                </button>
+
+                <div>
+                    <span class="top-label">
+                        SMART CAMPUS PORTAL
+                    </span>
+
+                    <h2 id="pageTitle">
+                        Good morning, Versha 👋
+                    </h2>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <!-- Notifications -->
+                <div class="dropdown-wrapper">
+
+                    <button
+                        class="icon-button"
+                        id="notificationButton"
+                    >
+                        🔔
+                        <span id="notificationBadge">3</span>
+                    </button>
+
+                    <div
+                        class="dropdown notification-dropdown"
+                        id="notificationDropdown"
+                    >
+
+                        <div class="dropdown-header">
+
+                            <strong>Notifications</strong>
+
+                            <button id="markRead">
+                                Mark all read
+                            </button>
+
+                        </div>
+
+                        <div id="notificationList"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Profile -->
+                <div class="dropdown-wrapper">
+
+                    <button
+                        class="profile-button"
+                        id="profileButton"
+                    >
+
+                        <div class="avatar">
+                            VD
+                        </div>
+
+                        <div class="profile-name">
+                            <strong>Versha Dewangan</strong>
+                            <small>Student</small>
+                        </div>
+
+                        <span>⌄</span>
+
+                    </button>
+
+                    <div
+                        class="dropdown profile-dropdown"
+                        id="profileDropdown"
+                    >
+
+                        <button data-profile="profile">
+                            👤 My Profile
+                        </button>
+
+                        <button data-profile="settings">
+                            ⚙️ Settings
+                        </button>
+
+                        <hr>
+
+                        <button class="logout-btn" id="logoutBtn">
+                            ↪ Logout
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= PAGES ================= -->
+
+        <div class="content">
+
+
+            <!-- OVERVIEW -->
+            <section
+                class="page active-page"
+                id="page-overview"
+            >
+
+                <!-- HERO -->
+                <div class="hero">
+
+                    <div class="hero-content">
+
+                        <span class="hero-pill">
+                            ☀️ Campus Day
+                        </span>
+
+                        <h1>
+                            Your campus,
+                            <span>simplified.</span>
+                        </h1>
+
+                        <p>
+                            Check notices, register for events,
+                            submit complaints and access academic
+                            resources from one place.
+                        </p>
+
+                        <div class="hero-buttons">
+
+                            <button
+                                class="primary-btn"
+                                data-action="events"
+                            >
+                                Explore Events →
+                            </button>
+
+                            <button
+                                class="secondary-btn"
+                                data-action="complaint"
+                            >
+                                Report an Issue
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="hero-decoration hero-circle-1"></div>
+                    <div class="hero-decoration hero-circle-2"></div>
+
+                    <div class="hero-big-logo">
+                        CC
+                    </div>
+
+                </div>
+
+
+                <!-- STATS -->
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon purple">
+                            📢
+                        </div>
+
+                        <div>
+                            <small>New Notices</small>
+                            <strong id="statNotices">4</strong>
+                            <span class="positive">
+                                +2 this week
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">
+                            📅
+                        </div>
+
+                        <div>
+                            <small>Upcoming Events</small>
+                            <strong id="statEvents">6</strong>
+                            <span class="positive">
+                                3 this weekend
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon orange">
+                            🛠️
+                        </div>
+
+                        <div>
+                            <small>My Complaints</small>
+                            <strong id="statComplaints">2</strong>
+                            <span>
+                                1 in progress
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon green">
+                            📚
+                        </div>
+
+                        <div>
+                            <small>Study Resources</small>
+                            <strong>18</strong>
+                            <span class="positive">
+                                Updated today
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TWO COLUMNS -->
+                <div class="two-column">
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <span>LATEST</span>
+                                <h3>Important Notices</h3>
+                            </div>
+
+                            <button
+                                class="text-button"
+                                data-action="notices"
+                            >
+                                View all →
+                            </button>
+
+                        </div>
+
+                        <div id="overviewNotices"></div>
+
+                    </div>
+
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <span>QUICK ACCESS</span>
+                                <h3>What do you need?</h3>
+                            </div>
+
+                        </div>
+
+                        <div class="quick-grid">
+
+                            <button
+                                class="quick-card"
+                                data-action="complaint"
+                            >
+                                <span>📝</span>
+                                <strong>Submit Complaint</strong>
+                                <small>Report campus issue</small>
+                            </button>
+
+                            <button
+                                class="quick-card"
+                                data-action="events"
+                            >
+                                <span>🎟️</span>
+                                <strong>Register Event</strong>
+                                <small>Find campus events</small>
+                            </button>
+
+                            <button
+                                class="quick-card"
+                                data-action="resources"
+                            >
+                                <span>📖</span>
+                                <strong>Open Resources</strong>
+                                <small>Notes & study links</small>
+                            </button>
+
+                            <button
+                                class="quick-card"
+                                data-action="notices"
+                            >
+                                <span>🔎</span>
+                                <strong>Browse Notices</strong>
+                                <small>Latest announcements</small>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EVENTS -->
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <span>UPCOMING</span>
+                            <h3>Campus Events</h3>
+                        </div>
+
+                        <button
+                            class="text-button"
+                            data-action="events"
+                        >
+                            See all →
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="event-grid"
+                        id="overviewEvents"
+                    ></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- NOTICES -->
+            <section
+                class="page"
+                id="page-notices"
+            >
+
+                <div class="page-heading">
+                    <div>
+                        <span>UPDATES</span>
+                        <h1>Notices & Announcements</h1>
+                        <p>
+                            Stay updated with the latest campus information.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="filter-bar">
+
+                    <div class="search-box">
+                        🔎
+                        <input
+                            id="noticeSearch"
+                            placeholder="Search notices..."
+                        >
+                    </div>
+
+                    <div class="filter-pills" id="noticeFilters">
+
+                        <button
+                            class="filter-pill active"
+                            data-filter="All"
+                        >
+                            All
+                        </button>
+
+                        <button
+                            class="filter-pill"
+                            data-filter="Academic"
+                        >
+                            Academic
+                        </button>
+
+                        <button
+                            class="filter-pill"
+                            data-filter="Events"
+                        >
+                            Events
+                        </button>
+
+                        <button
+                            class="filter-pill"
+                            data-filter="Exam"
+                        >
+                            Exam
+                        </button>
+
+                        <button
+                            class="filter-pill"
+                            data-filter="General"
+                        >
+                            General
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div
+                    class="notice-list"
+                    id="noticeList"
+                ></div>
+
+            </section>
+
+
+            <!-- EVENTS -->
+            <section
+                class="page"
+                id="page-events"
+            >
+
+                <div class="page-heading">
+                    <div>
+                        <span>ACTIVITIES</span>
+                        <h1>Campus Events</h1>
+                        <p>
+                            Discover workshops, competitions and campus activities.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="event-controls">
+
+                    <div class="search-box">
+                        🔎
+                        <input
+                            id="eventSearch"
+                            placeholder="Search events..."
+                        >
+                    </div>
+
+                    <select id="eventCategory">
+                        <option value="All">
+                            All Categories
+                        </option>
+
+                        <option value="Workshop">
+                            Workshop
+                        </option>
+
+                        <option value="Competition">
+                            Competition
+                        </option>
+
+                        <option value="Cultural">
+                            Cultural
+                        </option>
+
+                        <option value="Sports">
+                            Sports
+                        </option>
+                    </select>
+
+                </div>
+
+                <div
+                    class="event-grid large"
+                    id="eventList"
+                ></div>
+
+            </section>
+
+
+            <!-- COMPLAINTS -->
+            <section
+                class="page"
+                id="page-complaints"
+            >
+
+                <div class="page-heading page-heading-row">
+
+                    <div>
+                        <span>CAMPUS CARE</span>
+                        <h1>Complaints & Tracking</h1>
+                        <p>
+                            Submit campus issues and track their progress.
+                        </p>
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        id="newComplaint"
+                    >
+                        + New Complaint
+                    </button>
+
+                </div>
+
+
+                <div class="complaint-stats">
+
+                    <div class="mini-stat">
+                        <small>Total</small>
+                        <strong id="complaintTotal">2</strong>
+                    </div>
+
+                    <div class="mini-stat">
+                        <small>Pending</small>
+                        <strong id="complaintPending">1</strong>
+                    </div>
+
+                    <div class="mini-stat">
+                        <small>In Progress</small>
+                        <strong id="complaintProgress">1</strong>
+                    </div>
+
+                    <div class="mini-stat">
+                        <small>Resolved</small>
+                        <strong id="complaintResolved">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <span>MY REPORTS</span>
+                            <h3>Complaint History</h3>
+                        </div>
+
+                        <div class="search-box small-search">
+                            🔎
+                            <input
+                                id="complaintSearch"
+                                placeholder="Search complaint..."
+                            >
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="complaint-list"
+                        id="complaintList"
+                    ></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- RESOURCES -->
+            <section
+                class="page"
+                id="page-resources"
+            >
+
+                <div class="page-heading">
+                    <div>
+                        <span>LEARNING HUB</span>
+                        <h1>Academic Resources</h1>
+                        <p>
+                            Quickly access study material and student portals.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="resource-grid"
+                    id="resourceGrid"
+                ></div>
+
+            </section>
+
+
+            <!-- ANNOUNCEMENTS -->
+            <section
+                class="page"
+                id="page-announcements"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+                        <span>CAMPUS NEWS</span>
+                        <h1>Announcements</h1>
+                        <p>
+                            Important updates from your campus administration.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div
+                    class="announcement-list"
+                    id="announcementList"
+                ></div>
+
+            </section>
+
+
+            <!-- HELP -->
+            <section
+                class="page"
+                id="page-help"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+                        <span>SUPPORT</span>
+                        <h1>Help & Support</h1>
+                        <p>
+                            Need help? Find answers and contact campus support.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="help-grid">
+
+                    <div class="help-card">
+                        <span>💬</span>
+                        <h3>Student Support</h3>
+                        <p>
+                            Get assistance for common student issues.
+                        </p>
+                        <button
+                            class="secondary-btn"
+                            onclick="showToast('Support chat opened','💬')"
+                        >
+                            Start Chat
+                        </button>
+                    </div>
+
+                    <div class="help-card">
+                        <span>📧</span>
+                        <h3>Email Support</h3>
+                        <p>
+                            campus-support@campus.edu
+                        </p>
+                        <button
+                            class="secondary-btn"
+                            id="copySupport"
+                        >
+                            Copy Email
+                        </button>
+                    </div>
+
+                    <div class="help-card">
+                        <span>❓</span>
+                        <h3>FAQ</h3>
+                        <p>
+                            Find answers to frequently asked questions.
+                        </p>
+                        <button
+                            class="secondary-btn"
+                            onclick="showToast('FAQ opened','❓')"
+                        >
+                            View FAQ
+                        </button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- ================= COMPLAINT MODAL ================= -->
+<div
+    class="modal"
+    id="complaintModal"
+>
+
+    <div class="modal-card">
+
+        <button
+            class="modal-close"
+            data-close="complaintModal"
+        >
+            ×
+        </button>
+
+        <span class="modal-label">
+            CAMPUS CARE
+        </span>
+
+        <h2>Submit a Complaint</h2>
+
+        <p>
+            Tell us about the issue and we'll add it to your complaint tracker.
+        </p>
+
+        <form id="complaintForm">
+
+            <label>Complaint Title</label>
+
+            <input
+                id="complaintTitle"
+                placeholder="Example: Wi-Fi not working"
+                required
+            >
+
+            <label>Category</label>
+
+            <select
+                id="complaintCategory"
+                required
+            >
+
+                <option value="">
+                    Select category
+                </option>
+
+                <option>
+                    Infrastructure
+                </option>
+
+                <option>
+                    Hostel
+                </option>
+
+                <option>
+                    Wi-Fi
+                </option>
+
+                <option>
+                    Library
+                </option>
+
+                <option>
+                    Academic
+                </option>
+
+                <option>
+                    Other
+                </option>
+
+            </select>
+
+            <label>Description</label>
+
+            <textarea
+                id="complaintDescription"
+                rows="5"
+                placeholder="Describe the issue..."
+                required
+            ></textarea>
+
+            <button
+                class="primary-btn full-btn"
+                type="submit"
+            >
+                Submit Complaint →
+            </button>
+
+            <p
+                class="form-message"
+                id="complaintMessage"
+            ></p>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= PROFILE MODAL ================= -->
+<div
+    class="modal"
+    id="profileModal"
+>
+
+    <div class="modal-card profile-modal">
+
+        <button
+            class="modal-close"
+            data-close="profileModal"
+        >
+            ×
+        </button>
+
+        <div class="big-avatar">
+            VD
+        </div>
+
+        <span class="modal-label">
+            MY ACCOUNT
+        </span>
+
+        <h2 id="profileModalName">
+            Versha Dewangan
+        </h2>
+
+        <p>
+            B.Tech CSE • Student
+        </p>
+
+        <div class="profile-details">
+
+            <div>
+                <small>Email</small>
+                <strong>student@campus.edu</strong>
+            </div>
+
+            <div>
+                <small>Semester</small>
+                <strong>4th Semester</strong>
+            </div>
+
+            <div>
+                <small>Department</small>
+                <strong>Computer Science</strong>
+            </div>
+
+            <div>
+                <small>Status</small>
+                <strong class="active-text">
+                    Active
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= SETTINGS MODAL ================= -->
+<div
+    class="modal"
+    id="settingsModal"
+>
+
+    <div class="modal-card">
+
+        <button
+            class="modal-close"
+            data-close="settingsModal"
+        >
+            ×
+        </button>
+
+        <span class="modal-label">
+            SETTINGS
+        </span>
+
+        <h2>Preferences</h2>
+
+        <div class="setting-row">
+
+            <div>
+                <strong>Dark Mode</strong>
+                <small>Change dashboard appearance</small>
+            </div>
+
+            <button
+                class="setting-switch"
+                id="settingsThemeToggle"
+            >
+                Toggle
+            </button>
+
+        </div>
+
+        <div class="setting-row">
+
+            <div>
+                <strong>Notifications</strong>
+                <small>Receive campus notifications</small>
+            </div>
+
+            <button
+                class="setting-switch active"
+                id="settingsNotifyToggle"
+            >
+                On
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+<div
+    class="toast"
+    id="toast"
+>
+    <span id="toastIcon">✓</span>
+    <span id="toastMessage">Success</span>
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
